@@ -58,6 +58,7 @@
                 var thetext = document.getElementById("input").value;
                 if (thetext.indexOf("https://") > -1) {
                     thetext = thetext.replace("https://","http://");
+                    document.getElementById("input").value = thetext;
                 }
                 document.getElementById("myform").submit();
             }
