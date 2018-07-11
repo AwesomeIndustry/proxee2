@@ -54,11 +54,22 @@
             }
         </style>
         <script>
+            function is_url(str) {
+                  regexp =  /^(?:(?:https?|ftp):\/\/)?(?:(?!(?:10|127)(?:\.\d{1,3}){3})(?!(?:169\.254|192\.168)(?:\.\d{1,3}){2})(?!172\.(?:1[6-9]|2\d|3[0-1])(?:\.\d{1,3}){2})(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[1-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]-*)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))(?::\d{2,5})?(?:\/\S*)?$/;
+                        if (regexp.test(str)) {
+                          return true;
+                        }
+                        else {
+                          return false;
+                        }
+                }
             function validateForm() {
                 var thetext = document.getElementById("input").value;
                 if (thetext.indexOf("https://") > -1) {
                     thetext = thetext.replace("https://","http://");
                     document.getElementById("input").value = thetext;
+                } else if (is_url(thetext)) {
+                    thetext = "https://www.bing.com/search?q="+encodeURIComponent(thetext);
                 }
                 document.getElementById("myform").submit();
             }
@@ -70,11 +81,11 @@
             <h6>My Proxy Server</h1>
                 <center>
                     <form action="" method="get" accept-charset="utf-8" target="_blank" id="myform">
-                        <input name="url" type="text" class="txt" id="input" placeholder="type url here.." onfocus="this.value='';" />
+                        <input name="url" type="text" class="txt" id="input" placeholder="Type url here or search..." onfocus="this.value='';" />
                         <input type="button" class="btn" value="Go" onclick="validateForm();" />
                     </form>
                 </center>
-                <p class="footer">Instructions: Just type the URL of any web page in the input box above (
+                <p class="footer">Instructions: Just type the URL of any web page (or search) in the input box above (
                     <em>e.g. labnol.org</em> ) and hit Enter. <em>Note: Youtube doesn't work at all, and Google works rarely. Try Bing!</em></p>
                 <p class="footer">You too can
                     <a href="http://www.labnol.org/internet/setup-proxy-server/12890/">setup a personal proxy server</a> using Google App Engine. For support, contact
