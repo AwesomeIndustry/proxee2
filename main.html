@@ -68,7 +68,7 @@
                 if (thetext.indexOf("https://") > -1) {
                     thetext = thetext.replace("https://","http://");
                     document.getElementById("input").value = thetext;
-                } else if (is_url(thetext)) {
+                } else if (!is_url(thetext)) {
                     thetext = "https://www.bing.com/search?q="+encodeURIComponent(thetext);
                     document.getElementById("input").value = thetext;
                 }
