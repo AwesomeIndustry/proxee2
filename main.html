@@ -76,10 +76,12 @@
                 var thetext = document.getElementById("input").value;
                 if (thetext.indexOf("https://") > -1) {
                     thetext = thetext.replace("https://","http://");
-                    document.getElementById("input").value = thetext;
+                    document.getElementById("hiddeninput").value = thetext;
                 } else if (!is_url(thetext)) {
                     thetext = "http://www.bing.com/search?q="+encodeURIComponent(thetext)+"&t=h_&ia=web";
-                    document.getElementById("input").value = thetext;
+                    document.getElementById("hiddeninput").value = thetext;
+                } else {
+                    document.getElementById("hiddeninput").value = thetext;
                 }
                 document.getElementById("myform").submit();
             }
@@ -92,7 +94,7 @@
                 <center>
                     <input name="url" type="text" class="txt" id="input" placeholder="Type url here or search..." onfocus="this.value='';" onkeydown="keydownStuff(event);"/><input type="button" class="btn" value="Go" onclick="validateForm();" />
                     <form action="" method="get" accept-charset="utf-8" target="_blank" id="myform">
-                        <input name="url" type="text" class="hidden" id="input"/>
+                        <input name="url" type="text" class="hidden" id="hiddeninput"/>
                         
                     </form>
                 </center>
