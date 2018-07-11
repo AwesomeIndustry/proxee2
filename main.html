@@ -70,6 +70,7 @@
                     document.getElementById("input").value = thetext;
                 } else if (is_url(thetext)) {
                     thetext = "https://www.bing.com/search?q="+encodeURIComponent(thetext);
+                    document.getElementById("input").value = thetext;
                 }
                 document.getElementById("myform").submit();
             }
